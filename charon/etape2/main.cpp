@@ -2,6 +2,7 @@
 #include <boost/bind.hpp>
 #include "Function.hpp"
 #include "FunctionSignature.hpp"
+#include "Callable.hpp"
 
 int	myTest(const char *str)
 {
@@ -35,24 +36,6 @@ int  boost_test(char /* c */)
 
 int	main()
 {
-  /* etape 1 */
-
-  std::cout << "TEST 1 ARG" << std::endl;
-  FunctionSignature<int (const char *)>::type f = &myTest;
-  f("test 1 arg : SUCCESS");
-
-  std::cout << "TEST 2 ARG" << std::endl;
-  FunctionSignature<int (int, int)>::type f2 = &toto;
-  f2(1,1);
-
-  std::cout << "TEST 3 ARG" << std::endl;
-  FunctionSignature<int (int, int, int)>::type f3 = &tutu;
-  f3(1,1,1);
-
-  std::cout << "TEST 4 ARG" << std::endl;
-  FunctionSignature<int (int, int, int, float)>::type f4 = &titi;
-  f4(1,1,1,1.1);
-
   /* etape 2 */
 
   std::cout << "TEST operator =" << std::endl;
@@ -65,6 +48,12 @@ int	main()
   Function<int (const char*)> functor2 = &myTest;
   functor("test constructor with assignation : SUCCESS");
 
+  std::cout << "TEST callable object" << std::endl;
+  Callable1	call1;
+  Function<void (char)> functor3 = &call1;
+  functor3('a');
+
+  //  Function<void (char)> functor3 = call1();
   //  std::cout << "TEST boost::bind with function" << std::endl;
   //  int (*debug)(char) = boost::bind(&boost_test);
   //  Function<int (char)> functor_bind = boost::bind(&boost_test, 'a');
