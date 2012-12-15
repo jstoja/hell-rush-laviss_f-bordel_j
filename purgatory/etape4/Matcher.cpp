@@ -3,25 +3,50 @@
 #include "Matcher.h"
 
 Matcher::Matcher(FSA &fsa) : _fsa(fsa) {
+  _fsa.setInitial(0);
 }
 
-void Matcher::init(std::string &alpha)
-{
-    for (size_t i = 0; i < alpha.size(); ++i)
-      {      
-	State *st = new State();
-	if (i < alpha.size())
-	  {
-	    Edge *e = new Edge(alpha[i]);
-	    st->addNext(i + 1, *e);
-	  }
-	if (i == alpha.size() - 1)
-	  st->setFinal(true);
-	else
-	  st->setFinal(false);
-	_fsa.addState(st);
+void Matcher::init(std::string &alpha) {
+  static int stateNum = 0;
+  int tmpStateNum = 0;
+
+  for (size_t i = 0; i < alpha.size(); ++i)
+    {      
+      State *st;
+      Edge e(alpha[i]);
+      if (_fsa.checkState(e, tmpStateNum) == 0)
+	{
+	  while ((_fsa.checkState(e, tmpStateNum) == 0))
+	    {
+	      tmpStateNum = _fsa.getStateNum(e, tmpStateNum);
+	      st = _fsa.getStateByNum(tmpStateNum);
+	    } 
+	  tmpStateNum = stateNum;
+	}
+      else
+	{
+	  if (i == 0)
+	    {
+	      st = _fsa.getInitial();
+	      tmpStateNum = stateNum;
+	    }
+	  else
+	    st = new State();
+	}
+      if (i < alpha.size())
+	{
+	  Edge *e = new Edge(alpha[i]);
+	  if (i != alpha.size() - 1)
+	    {
+	      st->addNext(tmpStateNum + 1, *e);
+	      tmpStateNum++;
+	    }	
+	}
+      (i == alpha.size() - 1 ? st->setFinal(true) : st->setFinal(false));
+      _fsa.addState(st);
     }
-    _fsa.displayState();
+  if (tmpStateNum > stateNum)
+    stateNum = tmpStateNum;
 }
 
 Matcher::~Matcher() {
@@ -59,7 +84,6 @@ bool Matcher::find(std::string &word, int &matchCount) {
       Edge	letter(word[i]);
       if (_fsa.checkState(letter, statePos) == 0)
 	{
-	  statePos++;	  
 	  token += letter.getChar();
 	  if (_fsa.isFinalState(statePos) == true)
 	    {
@@ -68,6 +92,8 @@ bool Matcher::find(std::string &word, int &matchCount) {
 	      token.clear();
 	      statePos = 0;
 	    }
+	  else
+	    statePos++;
 	}
       else
 	{
@@ -78,4 +104,14 @@ bool Matcher::find(std::string &word, int &matchCount) {
     }
   std::cout << "match count " << matchCount << std::endl;
   return true;
+}
+
+void	Matcher::testClosure()
+{
+  _fsa.testClosure();
+}
+
+void Matcher::testMove()
+{
+  _fsa.testMove();
 }

@@ -44,3 +44,25 @@ int	State::checkState(char letter)
     return 0;
   return -1;
 }
+
+std::list<int>&	State::closure()
+{
+  if (_closure.empty() == true)
+    {
+      _closure.push_back(getName());
+      for (std::map<int, Edge>::const_iterator it = _next.begin();
+	   it != _next.end(); ++it)
+	_closure.push_back((*it).first);
+    }
+  return _closure;
+}
+
+int State::getStateNum(Edge e)
+{
+  for (std::map<int, Edge>::const_iterator it = _next.begin(); it != _next.end(); ++it)
+    {
+      if ((*it).second.getChar() ==  e.getChar())
+	return (*it).first;
+    }
+  return 0;
+}

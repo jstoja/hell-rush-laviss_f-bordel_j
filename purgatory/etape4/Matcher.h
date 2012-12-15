@@ -11,6 +11,8 @@ class Matcher {
 		void init(std::string &alpha);
 		bool find(std::string &word);
 		bool find(std::string &word, int &fi);
+		void testClosure();
+		void testMove();
 	private:
 		FSA _fsa;
 };
