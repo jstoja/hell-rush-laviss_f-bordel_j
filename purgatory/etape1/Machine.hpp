@@ -1,0 +1,40 @@
+#ifndef _MACHINE_H_
+# define _MACHINE_H_
+
+#define STATE_MAX 8
+#define EDGE_MAX 8
+
+enum eState {
+	S0,
+	S1,
+	S2,
+	S3,
+	S4,
+	S5,
+	S6,
+	S7,
+	STATE_ERROR
+};
+
+enum eAction {
+	MA,
+	HR,
+	ACTION_ERROR
+};
+
+/*extern gStateTable[STATE_MAX][EDGE_MAX] = [
+//	 M             E             C             H             A             N             T             OTHER
+	[MA          , ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR], //S0
+	[ACTION_ERROR, MA          , ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR], //S1
+	[ACTION_ERROR, ACTION_ERROR, MA          , ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR], //S2
+	[ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, MA          , ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR], //S3
+	[ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, MA          , ACTION_ERROR, ACTION_ERROR, ACTION_ERROR], //S4
+	[ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, MA          , ACTION_ERROR, ACTION_ERROR], //S5
+	[ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, ACTION_ERROR, MA          , ACTION_ERROR], //S6
+	[HR          , HR          , HR          , HR          ,HR           ,HR           , HR          , HR          ]  //S7
+]*/
+
+extern eState  gStateTable[STATE_MAX][EDGE_MAX];
+extern eAction gActionTable[STATE_MAX][EDGE_MAX];
+
+#endif
