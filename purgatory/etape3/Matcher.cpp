@@ -21,7 +21,7 @@ void Matcher::init(std::string &alpha)
 	  st->setFinal(false);
 	_fsa.addState(st);
     }
-    _fsa.displayState();
+    //_fsa.displayState();
 }
 
 Matcher::~Matcher() {

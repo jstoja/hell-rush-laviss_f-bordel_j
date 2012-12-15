@@ -11,5 +11,6 @@ ADD_EXECUTABLE(
 	FSA.h
 	Matcher.cpp
 	Matcher.h
+	main.cpp
 )
 #SET(EXECUTABLE_OUTPUT_PATH ..)
