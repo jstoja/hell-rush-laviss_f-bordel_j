@@ -62,7 +62,7 @@ bool Matcher::find(std::string &word, int &matchCount) {
 	  token += letter.getChar();
 	  if (_fsa.isFinalState(statePos) == true)
 	    {
-	      std::cout << "find token : " << token << std::endl;
+			std::cout << "find token : " << token.c_str() << std::endl;
 	      matchCount++;
 	      token.clear();
 	      statePos = 0;

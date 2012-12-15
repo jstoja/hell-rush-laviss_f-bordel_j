@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 PROJECT(hell_rush_purgatory_etape1)
 
 ADD_EXECUTABLE(
-	test
+	test_dynamic_fsa
 	Edge.cpp
 	Edge.h
 	State.cpp

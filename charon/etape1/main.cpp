@@ -1,5 +1,4 @@
 #include <iostream>
-#include <boost/bind.hpp>
 #include "FunctionSignature.hpp"
 
 int	myTest(const char *str)
