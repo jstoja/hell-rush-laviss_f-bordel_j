@@ -7,16 +7,21 @@
 class State {
 	public:
 		State();
+
 		~State();
 
-		int getName() const { return _state;};
+		int getName() const;
 		void addNext(int state, Edge &ed);
+		void setFinal(bool);
+		bool isFinal() const;
+		char getChar();
+		int checkState(char);
 	private:
 		static int _iterate();
 
 		std::map<int, Edge> _next;
 		int _state;
-		int _final;
+		bool _final;
 };
 
 #endif

@@ -6,7 +6,7 @@ class Edge {
 		Edge(char c);
 		Edge() {}
 		~Edge();
-
+		char getChar() const { return _c; }
 		bool operator>(char c) const;
 		bool operator>=(char c) const;
 		bool operator<(char c) const;

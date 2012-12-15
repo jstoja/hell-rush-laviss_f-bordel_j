@@ -9,13 +9,15 @@ class FSA {
 		FSA();
 		~FSA();
 
-		void addState(State &s);
-		void operator+=(State &s);
+		void addState(State *s);
+		void operator+=(State *s);
 		State &operator[](int s) const;
-
+		void displayState();
 		void setInitial(int i);
+		int checkState(Edge&, int);
+		bool isFinalState(int);
 	private:
-		std::map<int, State> _states;
+		std::map<int, State*> _states;
 		int _initial;
 };
 

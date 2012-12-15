@@ -8,7 +8,7 @@ class Matcher {
 	public:
 		Matcher(FSA &fsa);
 		~Matcher();
-
+		void init(std::string &alpha);
 		bool find(std::string &word);
 		bool find(std::string &word, int &fi);
 	private:
