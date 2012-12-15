@@ -9,26 +9,26 @@ Edge::~Edge()
 {
 }
 
-bool Edge::operator>(char c){
+bool Edge::operator>(char c) const {
 	return _c > c;
 }
 
-bool Edge::operator>=(char c) {
+bool Edge::operator>=(char c) const {
 	return _c >= c;
 }
 
-bool Edge::operator<(char c) {
+bool Edge::operator<(char c) const {
 	return _c < c;
 }
 
-bool Edge::operator<=(char c) {
+bool Edge::operator<=(char c) const {
 	return _c <= c;
 }
 
-bool Edge::operator==(char c) {
+bool Edge::operator==(char c) const {
 	return _c == c;
 }
 
-bool Edge::operator()(char c) {
+bool Edge::operator()(char c) const {
 	return _c == c;
 }

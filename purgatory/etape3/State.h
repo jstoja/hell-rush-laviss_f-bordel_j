@@ -9,6 +9,7 @@ class State {
 		State();
 		~State();
 
+		int getName() const { return _state;};
 		void addNext(int state, Edge &ed);
 	private:
 		static int _iterate();

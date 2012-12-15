@@ -4,17 +4,15 @@
 class Edge {
 	public:
 		Edge(char c);
+		Edge() {}
 		~Edge();
 
-		bool operator>(char c);
-		bool operator>=(char c);
-
-		bool operator<(char c);
-		bool operator<=(char c);
-
-		bool operator==(char c);
-
-		bool operator()(char c);
+		bool operator>(char c) const;
+		bool operator>=(char c) const;
+		bool operator<(char c) const;
+		bool operator<=(char c) const;
+		bool operator==(char c) const;
+		bool operator()(char c) const;
 	private:
 		char	_c;
 };

@@ -7,5 +7,9 @@ ADD_EXECUTABLE(
 	Edge.h
 	State.cpp
 	State.h
+	FSA.cpp
+	FSA.h
+	Matcher.cpp
+	Matcher.h
 )
 #SET(EXECUTABLE_OUTPUT_PATH ..)
