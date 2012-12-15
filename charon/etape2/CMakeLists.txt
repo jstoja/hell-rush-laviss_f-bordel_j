@@ -5,5 +5,6 @@ ADD_EXECUTABLE(
 	test_functor_type
 	main.cpp
 	Function.hpp
+	Callable.hpp
 	)
 #SET(EXECUTABLE_OUTPUT_PATH ..)
