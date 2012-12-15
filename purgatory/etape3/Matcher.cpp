@@ -59,7 +59,6 @@ bool Matcher::find(std::string &word, int &matchCount) {
       Edge	letter(word[i]);
       if (_fsa.checkState(letter, statePos) == 0)
 	{
-	  statePos++;	  
 	  token += letter.getChar();
 	  if (_fsa.isFinalState(statePos) == true)
 	    {
@@ -68,6 +67,8 @@ bool Matcher::find(std::string &word, int &matchCount) {
 	      token.clear();
 	      statePos = 0;
 	    }
+	  else
+	    statePos++;	  
 	}
       else
 	{
