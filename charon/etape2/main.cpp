@@ -53,9 +53,8 @@ int	main()
   Function<void (char)> functor3 = &call1;
   functor3('a');
 
-  //  Function<void (char)> functor3 = call1();
-  //  std::cout << "TEST boost::bind with function" << std::endl;
-  //  int (*debug)(char) = boost::bind(&boost_test);
-  //  Function<int (char)> functor_bind = boost::bind(&boost_test, 'a');
+  std::cout << "TEST boost::bind with function" << std::endl;
+  Function<int (char)> functor4 = (boost::function<int (char)>)boost::bind(&boost_test, 'c');
+  functor4('a');
   return 0;
 }
