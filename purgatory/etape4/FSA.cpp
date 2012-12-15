@@ -77,12 +77,12 @@ std::list<int> FSA::closure(int pos)
 std::list<int> FSA::move(int pos)
 {
   std::list<int> ret;
+  std::list<int> tmp;
   if (pos <_states.size())
     {
       ret =  _states[pos]->closure();
       for (std::list<int>::iterator it = ret.begin(); it != ret.end(); ++it)
-	tmp.push_back(*it);
-      
+	tmp.push_back(*it);      
     }
   return ret;
 }
