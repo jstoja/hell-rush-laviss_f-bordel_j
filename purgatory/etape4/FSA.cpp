@@ -78,12 +78,23 @@ std::list<int> FSA::move(int pos)
 {
   std::list<int> ret;
   std::list<int> tmp;
+
   if (pos <_states.size())
     {
-      ret =  _states[pos]->closure();
+      tmp =  _states[pos]->closure();
+      for (std::list<int>::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	{
+	  if (*it != pos)
+	    ret.push_back(*it);      
+	}
+      ret.sort();
       for (std::list<int>::iterator it = ret.begin(); it != ret.end(); ++it)
-	tmp.push_back(*it);      
+	{
+	  std::list<int> retrec = move(*it);
+	  ret.merge(retrec);
+	}
     }
+  ret.unique();
   return ret;
 }
 
@@ -91,7 +102,7 @@ void FSA::testMove()
 {
   std::list<int> test;
 
-  test = move(0);
+  test = move(1);
   for (std::list<int>::iterator it = test.begin(); it != test.end(); ++it)
     std::cout << *it << ' ';
   std::cout << std::endl;
